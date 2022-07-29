@@ -7,6 +7,8 @@
 - [4. ローカルリポジトリに保存しよう](#4-ローカルリポジトリに保存しよう)
 - [5. README.mdファイルを用意しよう](#5-readmemdファイルを用意しよう)
 - [6. リモートリポジトリに保存しよう](#6-リモートリポジトリに保存しよう)
+- [例題１](#例題１)
+- [差分の表示](#差分の表示)
 - [7. リポジトリをダウンロードする](#7-リポジトリをダウンロードする)
 
 ## 1. 用語
@@ -97,6 +99,52 @@ git push origin master
 ```
 
 リモートリポジトリ関連の情報は[git_memo/remote.md](git_memo/remote.md)に記述している。
+
+## 例題１
+
+例としてテストプロジェクトを作成して、自分のgithubにアップロードしてみよう。
+
+```bash
+# 2章と3章が終わっているとする
+# github上にtest-projectというリポジトリを作成している
+mkdir test-project
+cd test-project
+echo "test" >> test.txt
+git init
+git status # 現在の状態が表示される
+git add ./
+git commit -m "[Add] first commit"
+git remote add origin git@github.com:hoge/test-project.git
+git push -u origin master # github上にアップロードされているか確認しよう (private)かどうかも要確認
+```
+
+## 差分の表示
+
+gitは差分を表示することができる。  
+例えば先程の例の続きのリポジトリを使用して差分を確認する。  
+```bash
+echo "aaaa" >> test.txt
+git diff
+```
+差分が表示される。`aaaa`が追加されたことが分かる。
+```git
+diff --git a/test.txt b/test.txt
+index 9daeafb..c3a88a1 100644
+--- a/test.txt
++++ b/test.txt
+@@ -1 +1,2 @@
+ test
++aaaa
+```
+変更したファイルを元に戻すにはcheckoutを用いる。
+```bash
+git checkout test.txt
+cat test.txt
+```
+`aaaa`が追加されてない状態に戻る。
+```
+test
+```
 
 ## 7. リポジトリをダウンロードする
 
