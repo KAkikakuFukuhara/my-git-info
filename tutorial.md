@@ -169,3 +169,6 @@ git clone 'http:/github.com/hoge/hoge'
 
 pythonプロジェクトの場合、パッケージのバージョンの違いやpythonのバージョンの違い等を揃える必要がある。  
 そのため、環境構築を楽にするための方法がある。それらの具体的な方法については[git_memo/python_env.md](git_memo/python_env.md)に記載している。pythonプロジェクトをgitで管理する場合は必ず行うように。
+
+**pythonプロジェクトにおけるチュートリアルを記載したのでコチラを参考にして欲しい**  
+[python-tutorial.md](python-tutorial.md)
