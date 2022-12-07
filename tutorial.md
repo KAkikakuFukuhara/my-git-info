@@ -24,7 +24,7 @@
 
 ## 2. インストール
 
-git プログラムをインストールする。
+git プログラムをインストールする。  
 
 ```bash
 sudo apt update # 全てのパッケージの最新情報を取得
@@ -34,7 +34,7 @@ sudo apt install git
 
 ## 3. 環境を設定する。
 
-以下のmarkdownファイルの1章と2章を参考にgitとgithubの環境設定を行う。
+以下のmarkdownファイルの1章と2章を参考にgitとgithubの環境設定を行う。  
 [git_memo/remote.md](git_memo/remote.md)
 
 
@@ -43,7 +43,7 @@ sudo apt install git
 
 - **git の初期化**
 
-現在のディレクトリをgitの監視下に追加する
+現在のディレクトリをgitの監視下に追加する  
 ```bash
 git init
 ```
@@ -51,7 +51,7 @@ git init
 - **gitの監視されない（無視する）ファイルを設定する**
 
 動画ファイル等、巨大なファイルを含むプロジェクトはgithub上にアップロードできないので監視下から外す必要がある。  
-そのために`.gitignore`ファイルを作成して明示的に無視させる。
+そのために`.gitignore`ファイルを作成して明示的に無視させる。  
 ```bash
 echo "" >> .gitignore
 echo "*.png" >> .gitignore # 正規表現で.pngが付くファイルを除外するようにする
@@ -87,26 +87,26 @@ github上では各ディレクトリのREADME.mdファイルもしくはREADME.r
 ローカルリポジトリの内容を反映させることができる。  
 まずは事前に空のリポジトリを作成しておく必要がある。  
 
-- リモートリポジトリを作成
-github上でリモートリポジトリを作成する。作成方法に関してはネットで調べよう
+- リモートリポジトリを作成  
+github上でリモートリポジトリを作成する。作成方法に関してはネットで調べよう  
 
-- リモートリポジトリ先を登録
-ローカルリポジトリとリンクするリモートリポジトリを登録する
+- リモートリポジトリ先を登録  
+ローカルリポジトリとリンクするリモートリポジトリを登録する  
 ```bash
 git remote add origin git@github.com:hoge/hoge.git
 ```
 
 - リモートリポジトリに保存
-ローカルリポジトリの内容をリモートリポジトリに反映させる。
+ローカルリポジトリの内容をリモートリポジトリに反映させる。  
 ```bash
 git push origin master
 ```
 
-リモートリポジトリ関連の情報は[git_memo/remote.md](git_memo/remote.md)に記述している。
+リモートリポジトリ関連の情報は[git_memo/remote.md](git_memo/remote.md)に記述している。  
 
 ## 7. 例題１
 
-例としてテストプロジェクトを作成して、自分のgithubにアップロードしてみよう。
+例としてテストプロジェクトを作成して、自分のgithubにアップロードしてみよう。  
 
 ```bash
 # 2章と3章が終わっているとする
@@ -140,7 +140,7 @@ index 9daeafb..c3a88a1 100644
  test
 +aaaa
 ```
-変更したファイルを元に戻すにはcheckoutを用いる。
+変更したファイルを元に戻すにはcheckoutを用いる。  
 ```bash
 git checkout test.txt
 cat test.txt
@@ -152,12 +152,12 @@ test
 
 ## 9. リポジトリをダウンロードする
 
-ダウンロードしたいディレクトリにコピーする
+ダウンロードしたいディレクトリにコピーする  
 ```bash
 git clone 'http:/github.com/hoge/hoge'
 ```
-これによりリモートリポジトリの内容がローカルリポジトリとして保存される。
-`注意` リポジトリを更新するわけではない。
+これによりリモートリポジトリの内容がローカルリポジトリとして保存される。  
+`注意` リポジトリを更新するわけではない。  
 
 
 ## 10. 環境構築サポート
@@ -168,7 +168,7 @@ git clone 'http:/github.com/hoge/hoge'
 ### 10.1. pythonプロジェクトの場合
 
 pythonプロジェクトの場合、パッケージのバージョンの違いやpythonのバージョンの違い等を揃える必要がある。  
-そのため、環境構築を楽にするための方法がある。それらの具体的な方法については[git_memo/python_env.md](git_memo/python_env.md)に記載している。pythonプロジェクトをgitで管理する場合は必ず行うように。
+そのため、環境構築を楽にするための方法がある。それらの具体的な方法については[git_memo/python_env.md](git_memo/python_env.md)に記載している。pythonプロジェクトをgitで管理する場合は必ず行うように。  
 
 **pythonプロジェクトにおけるチュートリアルを記載したのでコチラを参考にして欲しい**  
-[python-tutorial.md](python-tutorial.md)
+[python-tutorial.md](python-tutorial.md)  

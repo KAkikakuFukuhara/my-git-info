@@ -16,6 +16,7 @@ gitは最初にユーザー情報を登録する必要がある。
 - [https://snowtree-injune.com/2021/08/17/mail-git002/](https://snowtree-injune.com/2021/08/17/mail-git002/)
 
 以下の方法で author を登録する.
+idは８桁の番号でusernameはgithubのユーザー名である。これらの記載場所は上記の参照URLに記載場所が示されている
 
 ```bash
 git config --global user.name "Taro Yamada"
