@@ -31,6 +31,7 @@
   - [8.1. 巻き戻しの基礎](#81-巻き戻しの基礎)
   - [8.2. 巻き戻し(git reset オプション)](#82-巻き戻しgit-reset-オプション)
 - [9. ブランチの強制削除](#9-ブランチの強制削除)
+- [githubとの連携](#githubとの連携)
 - [10. Tips](#10-tips)
   - [10.1. コミット後の修正（コメントを修正したい or ファイルの追加忘れ or ファイルの変更点の保存忘れ）](#101-コミット後の修正コメントを修正したい-or-ファイルの追加忘れ-or-ファイルの変更点の保存忘れ)
 
@@ -1276,6 +1277,12 @@ $ git branch
 * master
 ```
  　これでブランチが master だけになった。
+
+## githubとの連携
+
+ 　git は github などのサービスと連携して真の実力を発揮する。  
+ 　git と githu の連携に関しては以下のURLの資料を参考にしてほしい。
+- [./github_memo/tutorial_git_remote.md](./github_memo/tutorial_git_remote.md)
 
 ## 10. Tips
 
