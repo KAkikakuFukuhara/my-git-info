@@ -5,6 +5,7 @@
 
 - [1. 問題点](#1-問題点)
 - [2. 解決策](#2-解決策)
+- [3. github上でのマージにおけるコンフリクトの解消](#3-github上でのマージにおけるコンフリクトの解消)
 
 ## 1. 問題点
 
@@ -31,3 +32,10 @@
  　もし権限が足りない場合は、以下のようにフォークしてからプルリクエストを送る方法もある。  
 - [https://qiita.com/YumaInaura/items/acff806290c8953d3185](https://qiita.com/YumaInaura/items/acff806290c8953d3185)
 
+## 3. github上でのマージにおけるコンフリクトの解消
+
+ 　ローカルでマージを行っていた際に、コンフリクトに悩まされていた。当然リモートリポジトリ上でのマージでも同様のことが起きる。その際はローカル側でmasterブランチを最新にしてから`git rebase`というコマンドを用いてから、もう一度プッシュをすることでコンフリクトを解決する。  
+ 　`git rebase`の使い方は以下。
+- [https://qiita.com/nannany_stores/items/ef77da2be1836ef9b5df](https://qiita.com/nannany_stores/items/ef77da2be1836ef9b5df)
+ 　リベース後のプッシュに関しては以下URLの**Option3**を参考に
+- [https://qiita.com/unaginokabayaki/items/50d047f584f65acc901e#option3master%E3%82%92feature%E3%81%ABrebase%E3%81%99%E3%82%8B](https://qiita.com/unaginokabayaki/items/50d047f584f65acc901e#option3master%E3%82%92feature%E3%81%ABrebase%E3%81%99%E3%82%8B)
