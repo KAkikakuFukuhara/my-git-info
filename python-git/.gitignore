@@ -1,0 +1,11 @@
+# python
+__pycache__
+
+# venv
+.venv
+
+# pyenv
+.python-version
+
+# portry
+poetry.lock
