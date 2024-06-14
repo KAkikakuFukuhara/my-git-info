@@ -49,6 +49,11 @@ echo ".python-version" >> .gitignore
 echo "poetry.lock" >> .gitignore
 ```
 
+特定のディレクトリのファイルを無視したくない場合は以下のよう詳細に指定して先頭にビックリマークを追加する。
+```bash
+echo "!/data/samples/*" >> .gitignore
+```
+
 ### ファイルを登録
 
 ```bash
