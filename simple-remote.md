@@ -41,6 +41,14 @@ echo "*.jpg" >> .gitignore
 echo "*.png" >> .gitignore
 ```
 
+ 　pythonプロジェクトの場合は以下を追加する。
+```bash
+echo "__pycache__" >> .gitignore
+echo ".venv" >> .gitignore
+echo ".python-version" >> .gitignore
+echo "poetry.lock" >> .gitignore
+```
+
 ### ファイルを登録
 
 ```bash
