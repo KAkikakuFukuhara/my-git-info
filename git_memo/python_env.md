@@ -12,6 +12,8 @@ pythonでプロジェクトを作成している場合、使っているpython�
   - [1.3. poetry環境](#13-poetry環境)
 - [2. 再現](#2-再現)
   - [2.1. pip](#21-pip)
+    - [pip 環境ファイルを用いる場合](#pip-環境ファイルを用いる場合)
+    - [poetry 環境ファイルを用いる場合](#poetry-環境ファイルを用いる場合)
   - [2.2. anaconda](#22-anaconda)
     - [2.2.1. conda環境ファイルを用いる場合](#221-conda環境ファイルを用いる場合)
     - [2.2.2. pip環境ファイルを用いる場合](#222-pip環境ファイルを用いる場合)
@@ -73,23 +75,33 @@ conda list -e > requirements.txt
 
 ### 1.3. poetry環境
 
-poetry環境の場合、以下の２つのファイルが自動で作成されているのでそれらをgitに含めればよい。  
+poetry環境の場合、以下の２つのファイルが自動で作成されている~~のでそれらをgitに含めればよい。~~  
+されているが、tomlファイルの方だけをgitに含めること。（理由としては lockファイルを含めるとライブラリの縛りが強くなるから。
 - pyproject.toml
 - poetry.lock
 
-それに加えて`requirements.txt`を作成しておくとよいだろう。  
-```bash
-poetry export --format requirements.txt --output requirements.txt
-```
+~~それに加えて requirements.txt を作成しておくとよいだろう。~~
+`pyproject.toml`を用いて`pip install .`でインストールできるようになったから必要なくなった。  
+
 またpythonのバージョンをREADMEに記載しておくことを忘れない。  
 
 ## 2. 再現
 
 ### 2.1. pip 
 
+#### pip 環境ファイルを用いる場合
+
 pip環境の再現は以下の方法を用いることで再現できる。  
 ```bash
 pip intsall -r requirements.txt
+```
+
+#### poetry 環境ファイルを用いる場合
+
+pip環境でのpoetryプロジェクトの再現（インストール）は以下で実現できる。  
+```bash
+# pyproject.tomlファイルがある場所で
+pip install -e .
 ```
 
 ### 2.2. anaconda
