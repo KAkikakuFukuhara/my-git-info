@@ -63,15 +63,15 @@ git config --global user.email "HOGE@FUGA.test0527.com"
 
  　ディレクトリをgitの追跡対象とするには`git init`コマンドを用いる必要がある。以下のように新しくディレクトリを作成して、そのディレクトリをgitの追跡対象にしてみよう。  
 
-```bash
-$ mkdir git-tutorial-free-test
-$ cd git-tutorial-free-test/
-$ ls -a
+```console
+user:~/$ mkdir git-tutorial-free-test
+user:~/git-tutorial-free-test$ cd git-tutorial-free-test/
+user:~/git-tutorial-free-test$ ls -a
 . ..
 
-$ git init
+user:~/git-tutorial-free-test$ git init
 Initialized empty Git repository in /home/fukuhara/workspace/test/git-tutorial-free-test/.git/
-$ ls -a
+user:~/git-tutorial-free-test$ ls -a
 .  ..  .git
 ```
  　git の追跡対象の情報は`.git`に保存される。  
@@ -79,8 +79,8 @@ $ ls -a
 ## 4. ファイルの追加と履歴の保存
 
  　git の現在の状態は以下のように`git status`で確認できる。  
-```bash
-$ git status
+```console
+user:~/git-tutorial-free-test$ git status
 ブランチ master
 
 No commits yet
@@ -92,11 +92,11 @@ nothing to commit (create/copy files and use "git add" to track)
 ### 4.1. ファイルの追加
 
  　それでは、以下のように新しいファイルを作成してgitの状態を見てみる。`echo "aaaa" >> test.txt` は test.txtが存在しない場合は作成してテキスト"aaaa"を記述するbashコマンドで、既に存在している場合は、最終行にテキストを追加する。  
-```bash
-$ echo "aaaa" >> test.txt
-$ ls -a
+```console
+user:~/git-tutorial-free-test$ echo "aaaa" >> test.txt
+user:~/git-tutorial-free-test$ ls -a
 .  ..  .git test.txt
-$ git status
+user:~/git-tutorial-free-test$ git status
 ブランチ master
 
 No commits yet
@@ -110,9 +110,9 @@ nothing added to commit but untracked files present (use "git add" to track)
 ```
  　上記を実行すると、追跡されていないファイルとして先程追加したtest.txtが表示されているのが分かるだろう。  
 　このファイルを追跡対象として登録するには以下のように`git add`コマンドを利用する。  
-```bash
-$ git add test.txt 
-$ git status
+```console
+user:~/git-tutorial-free-test$ git add test.txt 
+user:~/git-tutorial-free-test$ git status
 ブランチ master
 
 No commits yet
@@ -127,13 +127,13 @@ No commits yet
  　次にコミットを行う。コミットはステージングエリアのファイル群をコミットオブジェクトとしてひとまとめにしてリポジトリに保存する作業である。リポジトリとは変更履歴を保存する場所の概念であり、木構造のような構造をしている。  
  　コミットは以下のように`git commit`コマンドを用いる。ここでオプションとして`-m`と文字列を用いているが、これはコミットオブジェクトに対してコメントを記入するオプションである。コミットにはコメントは必須であるが、このオプションを実行しない場合は強制的にエディタが起動してしまう。エディタの操作方法の説明はしたくないのでこのオプションを使用している。  
 
-```bash
-$ git commit -m "first commit"
+```console
+user:~/git-tutorial-free-test$ git commit -m "first commit"
 [master (root-commit) 44b500f] first commit
  1 file changed, 1 insertion(+)
  create mode 100644 test.txt
 
-$ git status
+user:~/git-tutorial-free-test$ git status
 ブランチ master
 nothing to commit, working tree clean
 ```
@@ -143,14 +143,14 @@ nothing to commit, working tree clean
 
  　さて先程はファイルの追加に関して記載した。次にファイルの変更の場合を以下に記載する。  
 
-```bash
-$ echo "bbbb" >> test.txt
-$ ls -a
+```console
+user:~/git-tutorial-free-test$ echo "bbbb" >> test.txt
+user:~/git-tutorial-free-test$ ls -a
 .  ..  .git  test.txt
-$ cat test.txt
+user:~/git-tutorial-free-test$ cat test.txt
 aaaa
 bbbb
-$ git status
+user:~/git-tutorial-free-test$ git status
 ブランチ master
 Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
@@ -163,19 +163,19 @@ no changes added to commit (use "git add" and/or "git commit -a")
  　ファイルの変更を行った際にはファイルの追加の際には`new file: test.txt`であった表記が `modified:  test.txt` という表記に変わっている。  
 
 　これを`git add + commit`する方法は追加の時と同じである。
-```bash
-$ git add test.txt
-$ git status
+```console
+user:~/git-tutorial-free-test$ git add test.txt
+user:~/git-tutorial-free-test$ git status
 ブランチ master
 コミット予定の変更点:
   (use "git reset HEAD <file>..." to unstage)
 
 	modified:   test.txt
 
-$ git commit -m "[Update] test.txt"
+user:~/git-tutorial-free-test$ git commit -m "[Update] test.txt"
 [master 2a94b90] [Update] test.txt
  1 file changed, 1 insertion(+)
-$ git status
+user:~/git-tutorial-free-test$ git status
 ブランチ master
 nothing to commit, working tree clean
 ```
@@ -184,15 +184,15 @@ nothing to commit, working tree clean
 ### 4.3. ディレクトリの追加
 
  　次にディレクトリ毎追加を行う。追加の方法は以下のように対象にディレクトリを指定するだけで、コマンドは同じである。  
-```bash
-$ ls -a
+```console
+user:~/git-tutorial-free-test$ ls -a
 .  ..  .git  test.txt
-$ mkdir hoge_dir
-$ echo "cccc" >> hoge_dir/test2.txt
-$ echo "dddd" >> hoge_dir/test3.txt
-$ ls -a
+user:~/git-tutorial-free-test$ mkdir hoge_dir
+user:~/git-tutorial-free-test$ echo "cccc" >> hoge_dir/test2.txt
+user:~/git-tutorial-free-test$ echo "dddd" >> hoge_dir/test3.txt
+user:~/git-tutorial-free-test$ ls -a
 .  ..  .git  hoge_dir  test.txt
-$ git status
+user:~/git-tutorial-free-test$ git status
 ブランチ master
 追跡されていないファイル:
   (use "git add <file>..." to include in what will be committed)
@@ -200,8 +200,8 @@ $ git status
 	hoge_dir/
 
 nothing added to commit but untracked files present (use "git add" to track)
-$ git add hoge_dir
-$ git status
+user:~/git-tutorial-free-test$ git add hoge_dir
+user:~/git-tutorial-free-test$ git status
 ブランチ master
 コミット予定の変更点:
   (use "git reset HEAD <file>..." to unstage)
@@ -209,12 +209,12 @@ $ git status
 	new file:   hoge_dir/test2.txt
 	new file:   hoge_dir/test3.txt
 
-$ git commit -m "[Add] hoge_dir"
+user:~/git-tutorial-free-test$ git commit -m "[Add] hoge_dir"
 [master 1ea6ace] [Add] hoge_dir
  2 files changed, 2 insertions(+)
  create mode 100644 hoge_dir/test2.txt
  create mode 100644 hoge_dir/test3.txt
-$ git status
+user:~/git-tutorial-free-test$ git status
 ブランチ master
 nothing to commit, working tree clean
 ```
@@ -223,10 +223,10 @@ nothing to commit, working tree clean
 
  　あるファイルに関してはコミットをしたいが、あるファイルはコミットしたくないような状況が発生することがある。そのような場合は以下のように特定のファイルだけコミットすることが可能である。  
 
-```bash
-$ echo "eeee" >> test4.txt
-$ echo "ffff" >> test5.txt
-$ git status
+```console
+user:~/git-tutorial-free-test$ echo "eeee" >> test4.txt
+user:~/git-tutorial-free-test$ echo "ffff" >> test5.txt
+user:~/git-tutorial-free-test$ git status
 ブランチ master
 追跡されていないファイル:
   (use "git add <file>..." to include in what will be committed)
@@ -235,8 +235,8 @@ $ git status
 	test5.txt
 
 nothing added to commit but untracked files present (use "git add" to track)
-$ git add test4.txt 
-$ git status
+user:~/git-tutorial-free-test$ git add test4.txt 
+user:~/git-tutorial-free-test$ git status
 ブランチ master
 コミット予定の変更点:
   (use "git reset HEAD <file>..." to unstage)
@@ -248,11 +248,11 @@ $ git status
 
 	test5.txt
 
-$ git commit -m "[Add] test4.txt"
+user:~/git-tutorial-free-test$ git commit -m "[Add] test4.txt"
 [master 575b2b5] [Add] test4.txt
  1 file changed, 1 insertion(+)
  create mode 100644 test4.txt
-$ git status
+user:~/git-tutorial-free-test$ git status
 ブランチ master
 追跡されていないファイル:
   (use "git add <file>..." to include in what will be committed)
@@ -262,13 +262,13 @@ $ git status
 nothing added to commit but untracked files present (use "git add" to track)
 ```
  　当然その後、以下のように残して置いたファイルを追加したりするのは自由である。
-```bash
-$ git add test5.txt
-$ git commit -m "[Add] test5.txt"
+```console
+user:~/git-tutorial-free-test$ git add test5.txt
+user:~/git-tutorial-free-test$ git commit -m "[Add] test5.txt"
 [master e1475de] [Add] test5.txt
  1 file changed, 1 insertion(+)
  create mode 100644 test5.txt
-$ git status
+user:~/git-tutorial-free-test$ git status
 ブランチ master
 nothing to commit, working tree clean
 ```
@@ -279,10 +279,10 @@ nothing to commit, working tree clean
 #### 4.5.1. 特定の拡張子のファイルを追跡対象にしない
 
  　まず複数の画像ファイルを用意する。`touch HOGE`はHOGEという名称の空ファイルを作成するbashコマンドである。  
-```bash
-$ touch test1.jpg
-$ touch test2.jpg
-$ git status
+```console
+user:~/git-tutorial-free-test$ touch test1.jpg
+user:~/git-tutorial-free-test$ touch test2.jpg
+user:~/git-tutorial-free-test$ git status
 ブランチ master
 追跡されていないファイル:
   (use "git add <file>..." to include in what will be committed)
@@ -293,9 +293,9 @@ $ git status
 nothing added to commit but untracked files present (use "git add" to track)
 ```
  　`.gitignore`というファイルに除外したい拡張子のファイルを正規表現で追加。先程'追跡されていないファイル'として表記されていたjpgファイルが表示されなくなる。  
-```bash
-$ echo "*.jpg" >> .gitignore
-$ git status
+```console
+user:~/git-tutorial-free-test$ echo "*.jpg" >> .gitignore
+user:~/git-tutorial-free-test$ git status
 ブランチ master
 追跡されていないファイル:
   (use "git add <file>..." to include in what will be committed)
@@ -305,16 +305,16 @@ $ git status
 nothing added to commit but untracked files present (use "git add" to track)
 ```
  　`git add`の対象をカレントディレクトリにしても追加されていないことが分かる。そしていつもどおりコミットする。  
-```bash
-$ git add ./
-$ git status
+```console
+user:~/git-tutorial-free-test$ git add ./
+user:~/git-tutorial-free-test$ git status
 ブランチ master
 コミット予定の変更点:
   (use "git reset HEAD <file>..." to unstage)
 
 	new file:   .gitignore
 
-$ git commit -m "[Add] .gitignore"
+user:~/git-tutorial-free-test$ git commit -m "[Add] .gitignore"
 [master 71f617c] [Add] .gitignore
  1 file changed, 1 insertion(+)
  create mode 100644 .gitignore
@@ -325,9 +325,9 @@ $ git commit -m "[Add] .gitignore"
 
  　先程はワイルドカードを用いてjpgファイルを全て無視するようにした。しかし特定のファイルは追跡対象にしたい場合がある（例えばサンプルデータとか）。そのような場合は以下のようにエクスクラメーションマーク（ビックリマーク）を除外したいファイルパスの手前に置いて、.gitignoreに追記する。（echoコマンドの表記が少し異なるが`!`の追記に必要なためである[^1](https://qiita.com/anqooqie/items/785f46a8cc5f10ba7abb))  
 
-```bash
-$ echo "$(echo '!test1.jpg')" >> .gitignore
-$ git status
+```console
+user:~/git-tutorial-free-test$ echo "$(echo '!test1.jpg')" >> .gitignore
+user:~/git-tutorial-free-test$ git status
 ブランチ master
 Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
@@ -341,8 +341,8 @@ Changes not staged for commit:
 	test1.jpg
 
 no changes added to commit (use "git add" and/or "git commit -a")
-$ git add ./
-$ git status
+user:~/git-tutorial-free-test$ git add ./
+user:~/git-tutorial-free-test$ git status
 ブランチ master
 コミット予定の変更点:
   (use "git reset HEAD <file>..." to unstage)
@@ -350,7 +350,7 @@ $ git status
 	modified:   .gitignore
 	new file:   test1.jpg
 
-$ git commit -m "[Update] gitの追跡の特例としてtest1.jpgを追跡対象に追加"
+user:~/git-tutorial-free-test$ git commit -m "[Update] gitの追跡の特例としてtest1.jpgを追跡対象に追加"
 [master bef3708] [Update] gitの追跡の特例としてtest1.jpgを追跡対象に追加
  2 files changed, 1 insertion(+)
  create mode 100644 test1.jpg
@@ -363,11 +363,11 @@ $ git commit -m "[Update] gitの追跡の特例としてtest1.jpgを追跡対象
  　ファイルや正規表現以外にもディレクトリもまるごと無視するように指定できる。  
  以下のようにディレクトリパスを.gitignoreに含めるとまるごと無視するようになる。  
 
-```bash
-$ mkdir fuga_dir
-$ touch fuga_dir/test1.png
-$ touch fuga_dir/test2.png
-$ git status
+```console
+user:~/git-tutorial-free-test$ mkdir fuga_dir
+user:~/git-tutorial-free-test$ touch fuga_dir/test1.png
+user:~/git-tutorial-free-test$ touch fuga_dir/test2.png
+user:~/git-tutorial-free-test$ git status
 ブランチ master
 追跡されていないファイル:
   (use "git add <file>..." to include in what will be committed)
@@ -375,8 +375,8 @@ $ git status
 	fuga_dir/
 
 nothing added to commit but untracked files present (use "git add" to track)
-$ echo "fuga_dir" >> .gitignore
-$ git status
+user:~/git-tutorial-free-test$ echo "fuga_dir" >> .gitignore
+user:~/git-tutorial-free-test$ git status
 ブランチ master
 Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
@@ -385,8 +385,8 @@ Changes not staged for commit:
 	modified:   .gitignore
 
 no changes added to commit (use "git add" and/or "git commit -a")
-$ git add ./.gitignore 
-$ git commit -m "[Update] add do not include 'fuga' into .gitignore." 
+user:~/git-tutorial-free-test$ git add ./.gitignore 
+user:~/git-tutorial-free-test$ git commit -m "[Update] add do not include 'fuga' into .gitignore." 
 [master 7517781] [Update] add do not include 'fuga' into .gitignore.
  1 file changed, 1 insertion(+)
 ```
@@ -402,8 +402,8 @@ $ git commit -m "[Update] add do not include 'fuga' into .gitignore."
 
  履歴の表示は以下のような`git log`コマンドを使うと履歴が表示できる。  
 
-```bash
-$ git log
+```console
+user:~/git-tutorial-free-test$ git log
 commit 7517781dc1c19592aa62cd7f0f163d6e89f55525 (HEAD -> master)
 Author: Kenta Fukuhara <105337464+KAkikakuFukuhara@users.noreply.github.com>
 Date:   Wed May 22 11:36:21 2024 +0900
@@ -431,8 +431,8 @@ Date:   Wed May 22 11:03:47 2024 +0900
 ```
  　上記を使うと`git config`で設定した名前とメールアドレスに基づいて誰が何時どのような変更をしたのかを確認することができる。  
  　なおどのような変更かあったかだけをを確認したい場合は以下のオプションで省略することができる。  
-```bash
-$ git log --oneline
+```console
+user:~/git-tutorial-free-test$ git log --oneline
 7517781 (HEAD -> master) [Update] add do not include 'fuga' into .gitignore.
 bef3708 [Update] gitの追跡の特例としてtest1.jpgを追跡対象に追加
 71f617c [Add] .gitignore
@@ -448,8 +448,8 @@ e1475de [Add] test5.txt
 
  　履歴を確認した後は差分を表示する。  
  以下のコマンドで今のHEADの位置のコミットオブジェクトでどのような変更が行われたかが表示される。  
-```bash
-$ git diff HEAD~1
+```console
+user:~/git-tutorial-free-test$ git diff HEAD~1
 diff --git a/.gitignore b/.gitignore
 index 33c8d42..489b0dd 100644
 --- a/.gitignore
@@ -461,8 +461,8 @@ index 33c8d42..489b0dd 100644
 ```
  　今回は 'ディレクトリをまとめて無視する'の節で行われた.gitignore に fuga_dir を無視するように追加した変更を見ることができた。  
  　`HEAD~N` の N の数字を大きくすることで以下のようにさらに過去の差分を掘ることができる。  
-```bash
-$ git diff HEAD~2
+```console
+user:~/git-tutorial-free-test$ git diff HEAD~2
 ```
 ```diff
 diff --git a/.gitignore b/.gitignore
@@ -481,8 +481,8 @@ index 0000000..e69de29
 #### 5.2.1. ある時点Ａからある時点Ｂの差分
 
  　ある時点Ａからある時点Ｂの差分を見たいという需要が考えられる。そのような方法はコミットハッシュを利用することで実現できる。例えば以下のようにして履歴一覧を表示する。  
-```bash
-$ git log --oneline
+```console
+user:~/git-tutorial-free-test$ git log --oneline
 7517781 (HEAD -> master) [Update] add do not include 'fuga' into .gitignore.
 bef3708 [Update] gitの追跡の特例としてtest1.jpgを追跡対象に追加
 71f617c [Add] .gitignore
@@ -494,8 +494,8 @@ e1475de [Add] test5.txt
 ```
  　ここで `1ea6ace` から `e1475de`  の差分を見たい場合は以下のようにして確認する。  
 
-```bash
-$ git diff 1ea6ace e1475de
+```console
+user:~/git-tutorial-free-test$ git diff 1ea6ace e1475de
 ```
 ```diff
 diff --git a/test4.txt b/test4.txt
@@ -517,8 +517,8 @@ index 6c269ec..0000000
  　確かに`1ea6ace [Add] hoge_dir` から `e1475de [Add] test5.txt`見ると、test4.txtとtest5.txtが追加されているため正しい。  
  　一方で以下のように逆方向の差分を取ると追加ではなく削除されていることが分かる。  
 
-```bash
-$ git diff e1475de 1ea6ace
+```console
+user:~/git-tutorial-free-test$ git diff e1475de 1ea6ace
 ```
 ```diff
 diff --git a/test4.txt b/test4.txt
@@ -546,8 +546,8 @@ index 6c269ec..0000000
 ### 6.1. ブランチの説明とブランチの追加そして削除
  　履歴の表示の節でブランチの話を行った。
  ブランチの説明を行うために以下を見て欲しい。
-```bash
-$ git log --oneline
+```console
+user:~/git-tutorial-free-test$ git log --oneline
 7517781 (HEAD -> master) [Update] add do not include 'fuga' into .gitignore.
 bef3708 [Update] gitの追跡の特例としてtest1.jpgを追跡対象に追加
 71f617c [Add] .gitignore
@@ -560,23 +560,23 @@ e1475de [Add] test5.txt
  　上記は履歴の表示の節で使用したコミットの履歴である。ここでは`master`はブランチで、`HEAD`は現在のブランチを指すポインタである。  
  　ブランチ(branch)とは直訳すると枝のことで、gitの履歴管理が木構造の概念で行われていることからそう呼ばれる。枝なので複数のブランチに枝分かれすることができ、またソレらを切り替えることができる。  
  　例えば新しいブランチを作成してみて、ブランチの一覧を表示する。`git branch`コマンドでブランチの一覧を表示することができ、同じコマンドで任意のブランチ名を後に付けると新しいブランチを作成することができる（例：`git branch HOGE`）。  
-```bash
-$ git branch
+```console
+user:~/git-tutorial-free-test$ git branch
 * master
 
-$ git branch HOGE
-$ git branch
+user:~/git-tutorial-free-test$ git branch HOGE
+user:~/git-tutorial-free-test$ git branch
   HOGE
 * master
 ```
  　アスタリスクが前についている方が現在`HEAD`が指しているブランチである。なお以下のように既に存在しているブランチを指定するとエラーが出る。  
-```bash
-$ git branch master
+```console
+user:~/git-tutorial-free-test$ git branch master
 fatal: A branch named 'master' already exists.
 ```
  　ブランチは枝で枝分かれが可能という概念を前述したが、以下のコマンドで確認できる
-```bash
-$ git log --oneline
+```console
+user:~/git-tutorial-free-test$ git log --oneline
 7517781 (HEAD -> master, HOGE) [Update] add do not include 'fuga' into .gitignore.
 bef3708 [Update] gitの追跡の特例としてtest1.jpgを追跡対象に追加
 71f617c [Add] .gitignore
@@ -585,43 +585,43 @@ bef3708 [Update] gitの追跡の特例としてtest1.jpgを追跡対象に追加
  　上記の(HEAD -> master, HOGE)の部分を見ると`HOGE`が追加されていることが確認できるだろう。これは `master`というブランチがあるコミットオブジェクトを起点として枝分かれが行われているからである。  
 
  このように作成したブランチは以下のようにして削除することができる。
-```bash
-$ git branch -d HOGE
-$ git branch
+```console
+user:~/git-tutorial-free-test$ git branch -d HOGE
+user:~/git-tutorial-free-test$ git branch
 * master
 ```
 
 ### 6.2. ブランチの切り替え
 
  　次にブランチの切り替えに関しての説明を行う。現在のブランチ一覧は以下である。  
-```bash
-$ git branch
+```console
+user:~/git-tutorial-free-test$ git branch
 * master
 ```
  　まず準備として先程と同じ名前のHOGEブランチを作成する。  
-```bash
-$ git branch HOGE
-$ git branch
+```console
+user:~/git-tutorial-free-test$ git branch HOGE
+user:~/git-tutorial-free-test$ git branch
 HOGE 
 * master
 ```
 
  　ブランチの切り替えを行うコマンドは`git checkout`である。以下のようにして切り替えたいブランチを指定して切り替える。  
-```bash
-$ git checkout HOGE
-$ git branch
+```console
+user:~/git-tutorial-free-test$ git checkout HOGE
+user:~/git-tutorial-free-test$ git branch
 * HOGE
   master
 
-$ git log --oneline
+user:~/git-tutorial-free-test$ git log --oneline
 7517781 (HEAD -> HOGE, master) [Update] add do not include 'fuga' into .gitignore.
 bef3708 [Update] gitの追跡の特例としてtest1.jpgを追跡対象に追加
 71f617c [Add] .gitignore
 ...
 ```
  　上記を見ると、checkout した後は HOGE の方に現在のブランチを指すアスタリスクがついていることが確認できるので、ブランチの切り替えが行われたことが分かる。`git log` でも `master` の前に`HOGE`がついていることが確認できるので、現在参照しているブランチが変わっていることが分かる。また現在のブランチは以下のように`git status`コマンドでも確認することができる。  
-```bash
-$ git status
+```console
+user:~/git-tutorial-free-test$ git status
 ブランチ HOGE
 nothing to commit, working tree clean
 ```
@@ -629,42 +629,42 @@ nothing to commit, working tree clean
 ### 6.3. ブランチの切り替え（深堀り）
 
  　さてコレだけではブランチの便利さが分からないので、さらに深堀りしていく。現在のブランチ一覧は以下で HEAD が指しているブランチは HOGE であるとする。  
-```bash
-$ git branch
+```console
+user:~/git-tutorial-free-test$ git branch
 * HOGE
   master
 ```
  　その状態でファイルの追加とコミットを実行する。  
-```bash
-$ echo "gggg" >> test6.txt
-$ git add test6.txt 
-$ git commit -m "[Add] test6.txt"
+```console
+user:~/git-tutorial-free-test$ echo "gggg" >> test6.txt
+user:~/git-tutorial-free-test$ git add test6.txt 
+user:~/git-tutorial-free-test$ git commit -m "[Add] test6.txt"
 [HOGE bbbcdce] [Add] test6.txt
  1 file changed, 1 insertion(+)
  create mode 100644 test6.txt
 ```
  　無事追加された。この状態で履歴を確認してみよう。  
-```bash
-$ git log --oneline
+```console
+user:~/git-tutorial-free-test$ git log --oneline
 bbbcdce (HEAD -> HOGE) [Add] test6.txt
 7517781 (master) [Update] add do not include 'fuga' into .gitignore.
 bef3708 [Update] gitの追跡の特例としてtest1.jpgを追跡対象に追加
 71f617c [Add] .gitignore
 ```
  　現在のブランチである HOGE ブランチが master ブランチに先行して、一つ上のコミットオブジェクトに移動していることが分かるだろう。この HOGE が指しているコミットオブジェクトでは、test6.txt というモノが追加された。それでは master ブランチに切り替えてみよう。  
-```bash
-$ ls test6.txt
+```console
+user:~/git-tutorial-free-test$ ls test6.txt
 test6.txt
-$ git checkout master
+user:~/git-tutorial-free-test$ git checkout master
 Switched to branch 'master'
-$ git branch
+user:~/git-tutorial-free-test$ git branch
   HOGE
 * master
 
-$ ls test6.txt
+user:~/git-tutorial-free-test$ ls test6.txt
 ls: 'test6.txt' にアクセスできません: そのようなファイルやディレクトリはありません
 
-$ git log --oneline
+user:~/git-tutorial-free-test$ git log --oneline
 7517781 (HEAD -> master) [Update] add do not include 'fuga' into .gitignore.
 bef3708 [Update] gitの追跡の特例としてtest1.jpgを追跡対象に追加
 71f617c [Add] .gitignore
@@ -672,8 +672,8 @@ bef3708 [Update] gitの追跡の特例としてtest1.jpgを追跡対象に追加
 ```
  　master ブランチに移動して test6.txt を探してみると存在しない。そしてその test6.txt を追加したコミットオブジェクトを探してみると存在しない。削除されてしまったのだろうか。  
   いや違う。以下のコマンドで全てのブランチの履歴を表示する。
-```bash
-$ git log --oneline --all
+```console
+user:~/git-tutorial-free-test$ git log --oneline --all
 bbbcdce (HOGE) [Add] test6.txt
 7517781 (HEAD -> master) [Update] add do not include 'fuga' into .gitignore.
 bef3708 [Update] gitの追跡の特例としてtest1.jpgを追跡対象に追加
@@ -681,15 +681,15 @@ bef3708 [Update] gitの追跡の特例としてtest1.jpgを追跡対象に追加
 ...
 ```
  　存在が確認できた。`git log --oneline`だけでは未来の履歴に存在するコミットオブジェクトを確認できないようだ。また、HEADが指している対象が HOGE ブランチ から master ブランチ に切り替わっていることが分かる。もう一度、HOGE ブランチに切り替えてみる。  
-```bash
-$ git checkout HOGE
+```console
+user:~/git-tutorial-free-test$ git checkout HOGE
 Switched to branch 'HOGE'
-$ git branch
+user:~/git-tutorial-free-test$ git branch
 * HOGE
   master
-$ ls test6.txt 
+user:~/git-tutorial-free-test$ ls test6.txt 
 test6.txt
-$ git log --oneline
+user:~/git-tutorial-free-test$ git log --oneline
 bbbcdce (HEAD -> HOGE) [Add] test6.txt
 7517781 (master) [Update] add do not include 'fuga' into .gitignore.
 bef3708 [Update] gitの追跡の特例としてtest1.jpgを追跡対象に追加
@@ -701,16 +701,16 @@ bef3708 [Update] gitの追跡の特例としてtest1.jpgを追跡対象に追加
 ### 6.4. ブランチの切り替え（さらに深堀り）
 
  　さらにブランチの便利さを体験してもらうために以下のようにして新しいブランチを master ブランチから作成して test7.txt を追加してコミットしてみる。まず、master ブランチから新しいブランチを作成する。ここで `git checkout -b FUGA` というコマンドを用いているが、これは `git branch FUGA + git checkout FUGA` をワンライナーでやってくれるので、筆者は通常コレを用いている。  
-```bash
-$ git checkout master
+```console
+user:~/git-tutorial-free-test$ git checkout master
 Switched to branch 'master'
-$ git checkout -b FUGA
+user:~/git-tutorial-free-test$ git checkout -b FUGA
 Switched to a new branch 'FUGA'
-$ git branch
+user:~/git-tutorial-free-test$ git branch
 * FUGA
   HOGE
   master
-$ git log --oneline --all
+user:~/git-tutorial-free-test$ git log --oneline --all
 bbbcdce (HOGE) [Add] test6.txt
 7517781 (HEAD -> FUGA, master) [Update] add do not include 'fuga' into .gitignore.
 bef3708 [Update] gitの追跡の特例としてtest1.jpgを追跡対象に追加
@@ -719,14 +719,14 @@ bef3708 [Update] gitの追跡の特例としてtest1.jpgを追跡対象に追加
 ```
  　上記を見てみると master ブランチから `FUGA` というブランチが枝分かれされている。続ける。FUGAブランチで test7.txt を追加してコミットを行う。そして`--all`オプションをつけて履歴を確認する。  
 
-```bash
-$ echo "hhhh" >> test7.txt
-$ git add test7.txt
-$ git commit -m "[Add] test7.txt"
+```console
+user:~/git-tutorial-free-test$ echo "hhhh" >> test7.txt
+user:~/git-tutorial-free-test$ git add test7.txt
+user:~/git-tutorial-free-test$ git commit -m "[Add] test7.txt"
 [FUGA e756f92] [Add] test7.txt
  1 file changed, 1 insertion(+)
  create mode 100644 test7.txt
-$ git log --oneline --all
+user:~/git-tutorial-free-test$ git log --oneline --all
 e756f92 (HEAD -> FUGA) [Add] test7.txt
 bbbcdce (HOGE) [Add] test6.txt
 7517781 (master) [Update] add do not include 'fuga' into .gitignore.
@@ -735,8 +735,8 @@ bef3708 [Update] gitの追跡の特例としてtest1.jpgを追跡対象に追加
 ...
 ```
  　FUGAブランチ が HOGE ブランチの上に来ている。またソレらの関係が分かりにくい。そこで、以下のように`--graph`オプションを付けて履歴を再度確認する。  
-```bash
-$ git log --oneline --all --graph
+```console
+user:~/git-tutorial-free-test$ git log --oneline --all --graph
 * e756f92 (HEAD -> FUGA) [Add] test7.txt
 | * bbbcdce (HOGE) [Add] test6.txt
 |/  
@@ -749,18 +749,18 @@ $ git log --oneline --all --graph
 
  　そして、それぞれのブランチに切り替えを行い test6.txt と test7.txt の存在が独立していることが以下のようにして確認できるだろう。  
 
-```bash
-$ ls test7.txt
+```console
+user:~/git-tutorial-free-test$ ls test7.txt
 test7.txt
-$ git checkout HOGE
+user:~/git-tutorial-free-test$ git checkout HOGE
 Switched to branch 'HOGE'
-$ ls test7.txt
+user:~/git-tutorial-free-test$ ls test7.txt
 ls: 'test7.txt' にアクセスできません: そのようなファイルやディレクトリはありません
-$ ls test6.txt
+user:~/git-tutorial-free-test$ ls test6.txt
 test6.txt
-$ git checkout FUGA
+user:~/git-tutorial-free-test$ git checkout FUGA
 Switched to branch 'FUGA'
-$ ls test6.txt
+user:~/git-tutorial-free-test$ ls test6.txt
 ls: 'test6.txt' にアクセスできません: そのようなファイルやディレクトリはありません
 ```
  　今回はファイルの追加のみを行ったが、ファイルの書き換えに関しても同じことができる。  
@@ -781,8 +781,8 @@ ls: 'test6.txt' にアクセスできません: そのようなファイルや�
  　gitを用いたプロジェクトの進め方としては、基本的にメインブランチ上でコミットを直接行うのでは無く、作業用ブランチを作成して、そのブランチ上でコミットを行うべきである。これは何時でも編集前のブランチに戻ることができるという観点から従った方がよいと筆者は考えている。それでは、作業用ブランチでの作業が完了してメインブランチに変更内容を取り込みたい時はどうすればよいだろうか？そのような疑問を解決する概念が**マージ**である。  
 
  　マージとは直訳すると'合流'である。これは枝分かれしたブランチを一つのブランチに合流させるマージの機能をそのまま表している。実際にマージを行ってみよう。前提として、ここまでのチュートリアルを終えていると以下のような履歴を持ったリポジトリを持っている。  
-```bash
-$ git log --oneline --all --graph
+```console
+user:~/git-tutorial-free-test$ git log --oneline --all --graph
 * e756f92 (HEAD -> FUGA) [Add] test7.txt
 | * bbbcdce (HOGE) [Add] test6.txt
 |/  
@@ -791,16 +791,16 @@ $ git log --oneline --all --graph
 * 71f617c [Add] .gitignore
 ```
  　ここでメインブランチである master ブランチが作業ブランチ HOGE の変更内容を取り込みたい場合以下のように`git merge`コマンドを用いて行う。  
-```bash
-$ git checkout master
+```console
+user:~/git-tutorial-free-test$ git checkout master
 Switched to branch 'master'
-$ git merge HOGE
+user:~/git-tutorial-free-test$ git merge HOGE
 Updating 7517781..bbbcdce
 Fast-forward
  test6.txt | 1 +
  1 file changed, 1 insertion(+)
  create mode 100644 test6.txt
-$ git log --oneline --all --graph
+user:~/git-tutorial-free-test$ git log --oneline --all --graph
 * e756f92 (FUGA) [Add] test7.txt
 | * bbbcdce (HEAD -> master, HOGE) [Add] test6.txt
 |/  
@@ -810,8 +810,8 @@ $ git log --oneline --all --graph
  　上記のようにマージを行った後に履歴を確認すると master と HOGE が同じコミットオブジェクトの位置にいることが分かるだろう。これにより変更内容のマージ（合流）ができた。  
 
  　次に 作業用ブランチ 'FUGA' のブランチもメインブランチに取り込んでみよう。このマージは先程の場合と異なるマージとなるので'-m'オプションとメッセージを追加して行う。このオプションが無くともマージ自体は行われるがエディタが起動してしまって面倒なので付けた方がよい。  
-```bash
-$ git log --oneline --all --graph
+```console
+user:~/git-tutorial-free-test$ git log --oneline --all --graph
 * e756f92 (FUGA) [Add] test7.txt
 | * bbbcdce (HEAD -> master, HOGE) [Add] test6.txt
 |/  
@@ -820,12 +820,12 @@ $ git log --oneline --all --graph
 * 71f617c [Add] .gitignore
 ...
 
-$ git merge FUGA -m "Merge branch 'FUGA'"
+user:~/git-tutorial-free-test$ git merge FUGA -m "Merge branch 'FUGA'"
 Merge made by the 'recursive' strategy.
  test7.txt | 1 +
  1 file changed, 1 insertion(+)
  create mode 100644 test7.txt
-$ git log --oneline --all --graph
+user:~/git-tutorial-free-test$ git log --oneline --all --graph
 *   926d8cc (HEAD -> master) Merge branch 'FUGA'
 |\  
 | * e756f92 (FUGA) [Add] test7.txt
@@ -838,8 +838,8 @@ $ git log --oneline --all --graph
 ```
  作業用ブランチ FUGA の上に新しいコミットオブジェクトが追加され、ソコに master ブランチが移動していることが分かる。HOGE をマージした時と履歴のグラフが異なることに気づくだろう。ここで、どのような差分になっているのか確認する。  
 
-```bash
-$ git diff HEAD~1
+```console
+user:~/git-tutorial-free-test$ git diff HEAD~1
 diff --git a/test7.txt b/test7.txt
 new file mode 100644
 index 0000000..f3e8683
@@ -850,9 +850,9 @@ index 0000000..f3e8683
 ```
  　この差分は`git diff e7517781 e75692`の内容と一緒になる。つまり単純に test7.txt というファイルが追加されたことを表しているだけだ。  
  　この HOGE ブランチ と FUGA ブランチのマージにおいての違いの要因は、マージが行われた時の master ブランチの位置である。以下の履歴は それぞれのマージが行われる前の`--all`オプションを外した履歴である（ここは実行のマネはしない）  
-```bash
-$ git checkout HOGE
-$ git log --oneline --graph
+```console
+user:~/git-tutorial-free-test$ git checkout HOGE
+user:~/git-tutorial-free-test$ git log --oneline --graph
 * bbbcdce (HEAD -> HOGE) [Add] test6.txt
 * 7517781 (master) [Update] add do not include 'fuga' into .gitignore.
 * bef3708 [Update] gitの追跡の特例としてtest1.jpgを追跡対象に追加
@@ -860,9 +860,9 @@ $ git log --oneline --graph
 ...
 ```
  　ここでは master ブランチの位置が HOGE ブランチより過去に存在している。そしてそのまま HOGE ブランチをマージした後に FUGA ブランチをマージする前の`--all`オプションを外した履歴は以下である（これも実行はマネしない）  
-```bash
-$ git checkout FUGA
-$ git log --oneline --graph
+```console
+user:~/git-tutorial-free-test$ git checkout FUGA
+user:~/git-tutorial-free-test$ git log --oneline --graph
 * e756f92 (HEAD -> FUGA) [Add] test7.txt
 * 7517781 [Update] add do not include 'fuga' into .gitignore.
 * bef3708 [Update] gitの追跡の特例としてtest1.jpgを追跡対象に追加
@@ -870,8 +870,8 @@ $ git log --oneline --graph
 ...
 ```
  　上記を見ると master ブランチが FUGA より過去に存在しないことが分かる。何処にいるかというと`--all`オプションを付けて探すと...(これもマネしない)  
-```bash
-$ git log --oneline --all --graph
+```console
+user:~/git-tutorial-free-test$ git log --oneline --all --graph
 * e756f92 (FUGA) [Add] test7.txt
 | * bbbcdce (HEAD -> master, HOGE) [Add] test6.txt
 |/  
@@ -886,8 +886,8 @@ $ git log --oneline --all --graph
 
  　コンフリクトとは直訳すると衝突である。gitにおいてこの概念はマージを実行した際に変更が重複していることなどが原因でマージできない、つまり変更が衝突することを表している。  
  　さて実際にコンフリクトを発生させてどのような状況になるかを見ていこう。まず今の履歴の状態は以下のようになっているとする。  
-```bash
-$ git log --oneline --all --graph
+```console
+user:~/git-tutorial-free-test$ git log --oneline --all --graph
  *   926d8cc (HEAD -> master) Merge branch 'FUGA'
 |\  
 | * e756f92 (FUGA) [Add] test7.txt
@@ -899,39 +899,39 @@ $ git log --oneline --all --graph
 ...
 ```
  　今回はHOGE2ブランチというブランチを作成して、そのブランチにFUGA2ブランチというブランチをマージさせる方式で説明を行う。まず、HOGE2ブランチを作成して、そこに test8.txt というファイルを追加してコミットする。  
-```bash
-$ git checkout -b HOGE2
+```console
+user:~/git-tutorial-free-test$ git checkout -b HOGE2
 Switched to a new branch 'HOGE2'
-$ echo "aaaa" >> test8.txt
-$ git add test8.txt
-$ git commit -m "[Add] test8.txt"
+user:~/git-tutorial-free-test$ echo "aaaa" >> test8.txt
+user:~/git-tutorial-free-test$ git add test8.txt
+user:~/git-tutorial-free-test$ git commit -m "[Add] test8.txt"
 [HOGE2 11c5154] [Add] test8.txt
  1 file changed, 1 insertion(+)
  create mode 100644 test8.txt
 ```
  　次にHOGE2ブランチからFUGA2ブランチを枝分かれさせて、test8.txtのファイルの2行目に'bbbb'という文字列を追加してコミットする。  
-```bash
-$ git checkout -b FUGA2
+```console
+user:~/git-tutorial-free-test$ git checkout -b FUGA2
 Switched to a new branch 'FUGA2'
-$ echo "bbbb" >> test8.txt
-$ git add test8.txt
-$ git commit -m "[Add] 'bbbb' into test8.txt 2nd line"
+user:~/git-tutorial-free-test$ echo "bbbb" >> test8.txt
+user:~/git-tutorial-free-test$ git add test8.txt
+user:~/git-tutorial-free-test$ git commit -m "[Add] 'bbbb' into test8.txt 2nd line"
 [FUGA2 e20bd6e] [Add] test8.txt
  1 file changed, 1 insertion(+)
 ```
  　つづいて、HOGE2ブランチに戻って、test8.txtのファイルの2行目に'cccc'という文字列を追加してコミットする。  
-```bash
-$ git checkout HOGE2
+```console
+user:~/git-tutorial-free-test$ git checkout HOGE2
 Switched to branch 'HOGE2'
-$ echo "cccc" >> test8.txt
-$ git add test8.txt 
-$ git commit -m "[Add] 'cccc' into test8.txt 2nd line"
+user:~/git-tutorial-free-test$ echo "cccc" >> test8.txt
+user:~/git-tutorial-free-test$ git add test8.txt 
+user:~/git-tutorial-free-test$ git commit -m "[Add] 'cccc' into test8.txt 2nd line"
 [HOGE2 383d819] [Add] 'cccc' into test8.txt 2nd line
  1 file changed, 1 insertion(+)
 ```
  　この状態における履歴を見てみよう。  
-```bash
-$ git log --oneline --all --graph
+```console
+user:~/git-tutorial-free-test$ git log --oneline --all --graph
 * bf054d1 (FUGA2) [Add] 'bbbb' into test8.txt 2nd line
 | * 383d819 (HEAD -> HOGE2) [Add] 'cccc' into test8.txt 2nd line
 |/  
@@ -949,15 +949,15 @@ $ git log --oneline --all --graph
  　ここでは HOGE2 と FUGA2 が分かれていることが見て取れる。つまり HOGE2 と FUGA2 の２つのブランチでは test8.txt は 'bbbb'という文字列と'cccc'と文字列のどちらか一つしか含んでいない状態である。  
 
  　この状態で、HOGE2にFUGA2の変更を取り組むためのマージを実行してみよう。  
-```bash
-$ git merge FUGA2
+```console
+user:~/git-tutorial-free-test$ git merge FUGA2
 Auto-merging test8.txt
 CONFLICT (content): Merge conflict in test8.txt
 Automatic merge failed; fix conflicts and then commit the result.
 ```
  　コンフリクト(CONFLICT)が発生した。状態を確認してみよう。
-```bash
-$ git status
+```console
+user:~/git-tutorial-free-test$ git status
 ブランチ HOGE2
 You have unmerged paths.
   (fix conflicts and run "git commit")
@@ -971,22 +971,22 @@ Unmerged paths:
 no changes added to commit (use "git add" and/or "git commit -a")
 ```
  　どうやら test8.txt に複数の変更が含まれているようだ。これから、このコンフリクトの解決方法を解説していくが、その前にこのマージを取り消してコンフリクトが発生する前の状態に戻す方法を記載しておくい。以下の方法で今回のマージを一旦取り消すことができる。  
-```bash
-$ git merge --abort
-$ git status
+```console
+user:~/git-tutorial-free-test$ git merge --abort
+user:~/git-tutorial-free-test$ git status
 ブランチ HOGE2
 nothing to commit, working tree clean
 ```
  　さてコンフリクトの解消を解説するためにもう一度マージをする。  
-```bash
-$ git merge FUGA2
+```console
+user:~/git-tutorial-free-test$ git merge FUGA2
 Auto-merging test8.txt
 CONFLICT (content): Merge conflict in test8.txt
 Automatic merge failed; fix conflicts and then commit the result.
 ```
  　どのような変更になっている確認するために test8.txt の中身を見てみよう。  
-```bash
-$ cat test8.txt
+```console
+user:~/git-tutorial-free-test$ cat test8.txt
 aaaa
 <<<<<<< HEAD
 cccc
@@ -996,16 +996,16 @@ bbbb
 ```
  　上記が示しているのはイコール(=)より上の部分が HEAD(HOGE2)によって2行目に追加した部分、下の部分がFUGA2によって２行目に追加した部分である。これを解決するには、ドチラか片方の変更のみを取り組む、もしくは、両方の変更を取り組むなどの方法がある。  
  　今回は FUGA2 の変更を取り組みたいとすると以下のように行の削除を行ってファイルをキレイにする。  
-```bash
-$ code test8.txt # 任意のエディタで以下のようになるように修正する
-$ cat test8.txt
+```console
+user:~/git-tutorial-free-test$ code test8.txt # 任意のエディタで以下のようになるように修正する
+user:~/git-tutorial-free-test$ cat test8.txt
 aaaa
 bbbb
-$ git add test8.txt # 編集が終了したら git add を実行する
+user:~/git-tutorial-free-test$ git add test8.txt # 編集が終了したら git add を実行する
 ```
  　状態を見てみると、全てのコンフリクトが解決された旨が表記される。一方で、まだコミットが終わっていないことが表記されている。  
-```bash
-$ git status
+```console
+user:~/git-tutorial-free-test$ git status
 ブランチ HOGE2
 All conflicts fixed but you are still merging.
   (use "git commit" to conclude merge)
@@ -1015,13 +1015,13 @@ All conflicts fixed but you are still merging.
 	modified:   test8.txt
 ```
  　以下のコマンドでマージを完了させる。エディタが起動してしまうのが嫌なので以下の方式を採っているが、気にならない場合は`git merge --continue`だけでよい。  
-```bash
-$ git -c core.editor=/bin/true merge --continue
+```console
+user:~/git-tutorial-free-test$ git -c core.editor=/bin/true merge --continue
 [HOGE2 e2c3ec0] Merge branch 'FUGA2' into HOGE2
 ```
  　今の履歴は以下のようになっている。  
-```bash
-$ git log --oneline --all --graph
+```console
+user:~/git-tutorial-free-test$ git log --oneline --all --graph
 *   e2c3ec0 (HEAD -> HOGE2) Merge branch 'FUGA2' into HOGE2
 |\  
 | * bf054d1 (FUGA2) [Add] 'bbbb' into test8.txt 2nd line
@@ -1033,8 +1033,8 @@ $ git log --oneline --all --graph
 ```
  　そして差分が以下である。  
 
-```bash
-$ git diff HEAD~
+```console
+user:~/git-tutorial-free-test$ git diff HEAD~
 diff --git a/test8.txt b/test8.txt
 index 373a425..64e09ee 100644
 --- a/test8.txt
@@ -1054,7 +1054,7 @@ index 373a425..64e09ee 100644
 ### 8.1. 巻き戻しの基礎
 
  　gitはバージョン管理ツールであるので、もちろんコミットの巻き戻しが行える。まず現在の履歴を表示する。  
-```bash
+```console
 *   e2c3ec0 (HEAD -> HOGE2) Merge branch 'FUGA2' into HOGE2
 |\  
 | * bf054d1 (FUGA2) [Add] 'bbbb' into test8.txt 2nd line
@@ -1065,9 +1065,9 @@ index 373a425..64e09ee 100644
 ...
 ```
  　この状態から HOGE2 を masterブランチまで巻き戻していく。まず、保険として何時でも戻れるようにtempブランチを作成しておく。  
-```bash
-$ git branch temp
-$ git log --oneline --all --graph
+```console
+user:~/git-tutorial-free-test$ git branch temp
+user:~/git-tutorial-free-test$ git log --oneline --all --graph
 *   e2c3ec0 (HEAD -> HOGE2, temp) Merge branch 'FUGA2' into HOGE2
 |\  
 | * bf054d1 (FUGA2) [Add] 'bbbb' into test8.txt 2nd line
@@ -1078,14 +1078,14 @@ $ git log --oneline --all --graph
 ...
 ```
  　巻き戻しを行うコマンド(git reset)の使い方は以下である。  
-```bash
-$ git reset HEAD~
+```console
+user:~/git-tutorial-free-test$ git reset HEAD~
 Unstaged changes after reset:
 M	test8.txt
 
 no changes added to commit (use "git add" and/or "git commit -a")
 
-$ git log --oneline --all --graph
+user:~/git-tutorial-free-test$ git log --oneline --all --graph
 *   e2c3ec0 (temp) Merge branch 'FUGA2' into HOGE2
 |\  
 | * bf054d1 (FUGA2) [Add] 'bbbb' into test8.txt 2nd line
@@ -1096,36 +1096,36 @@ $ git log --oneline --all --graph
 ...
 ```
  　上記を見ると、HOGE2ブランチがFUGA2ブランチを取り込む前のコミットオブジェクトに巻き戻っていることが分かる。また、状態を見てみると test8.txt の変更が残っていることが確認できる。中身を見てみるとFUGA2を取り込んだ時の変更が、そのまま残っていることが分かる（FUGA2のマージで文字列ccccが文字列bbbbに変更されたこと）。  
-```bash
-$ git status
+```console
+user:~/git-tutorial-free-test$ git status
 ブランチ HOGE2
 Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
   (use "git checkout -- <file>..." to discard changes in working directory)
 
 	modified:   test8.txt
-$ cat test8.txt 
+user:~/git-tutorial-free-test$ cat test8.txt 
 aaaa
 bbbb
 ```
  　この変更を元に戻すには以下のように`git checkout`コマンドを用いることで元に戻すことができる。  
-```bash
-$ git checkout test8.txt
-$ cat test8.txt
+```console
+user:~/git-tutorial-free-test$ git checkout test8.txt
+user:~/git-tutorial-free-test$ cat test8.txt
 aaaa
 cccc
-$ git status
+user:~/git-tutorial-free-test$ git status
 ブランチ HOGE2
 nothing to commit, working tree clean
 ```
 
  　さて`git reset`の`HEAD~`には数字を指定することが出来る。以下のように２を指定すると２個前に戻ることができる。  
-```bash
-$ git reset HEAD~2
+```console
+user:~/git-tutorial-free-test$ git reset HEAD~2
 ```
  　履歴を確認すると以下のようになっている。
-```bash
-$ git log --oneline --all --graph
+```console
+user:~/git-tutorial-free-test$ git log --oneline --all --graph
 *   e2c3ec0 (temp) Merge branch 'FUGA2' into HOGE2
 |\  
 | * bf054d1 (FUGA2) [Add] 'bbbb' into test8.txt 2nd line
@@ -1136,8 +1136,8 @@ $ git log --oneline --all --graph
 ```
  　先程HOGE2ブランチがあった`383d819`のコミットオブジェクトから２個前の`926d8cc`コミットオブジェクトに戻っていることが分かる。  
  　状態も見てみよう
-```bash
-$ git status
+```console
+user:~/git-tutorial-free-test$ git status
 ブランチ HOGE2
 追跡されていないファイル:
   (use "git add <file>..." to include in what will be committed)
@@ -1148,17 +1148,17 @@ nothing added to commit but untracked files present (use "git add" to track)
 ``` 
  　test8.txtの変更が残っていることが分かる。しかし、先程と違い`modified`がついていない。これは`11c5154`で追加されたファイルなので現在のブランチでは存在しないファイルだからである。  
  　中身も確認してみよう。  
-```bash
-$ cat test8.txt
+```console
+user:~/git-tutorial-free-test$ cat test8.txt
 aaaa
 cccc
 ```
  　中身を確認してみると文字列’aaaa'を追加した`11c5154`のコミットと文字列'cccc'を追加した`383d819`コミットの２つの変更がまるごと残っていることが分かる。  
  　この変更を削除して状態をキレイにするために先程と同じように`git checkout`を用いてみよう。
-```bash
-$ git checkout test8.txt
+```console
+user:~/git-tutorial-free-test$ git checkout test8.txt
 error: pathspec 'test8.txt' did not match any file(s) known to git.
-$ git status
+user:~/git-tutorial-free-test$ git status
 ブランチ HOGE2
 追跡されていないファイル:
   (use "git add <file>..." to include in what will be committed)
@@ -1169,9 +1169,9 @@ nothing added to commit but untracked files present (use "git add" to track)
 ```
  　エラーが発生した。これは test8.txt が未来のコミットで追加されたファイルであるため、現在のコミットオブジェクトでの状態が分からないからである。つまり`git checkout FILE`はあるファイルを今のコミットにおける状態に戻しているのである。このような場合では普通に`rm`コマンド等を用いて削除するのがよい。  
 
-```bash
-$ rm test8.txt
-$ git status
+```console
+user:~/git-tutorial-free-test$ rm test8.txt
+user:~/git-tutorial-free-test$ git status
 ブランチ HOGE2
 nothing to commit, working tree clean
 ```
@@ -1179,7 +1179,7 @@ nothing to commit, working tree clean
 ### 8.2. 巻き戻し(git reset オプション)
 
  　さてHOGE2をmasterまで巻き戻してきたが更に戻してみよう。今の履歴は以下のようになっている（今回は`--all`オプションを用いない）  
-```bash
+```console
 *   926d8cc (HEAD -> HOGE2, master) Merge branch 'FUGA'
 |\  
 | * e756f92 (FUGA) [Add] test7.txt
@@ -1189,12 +1189,12 @@ nothing to commit, working tree clean
 ...
 ```
  　ここから`7517781`のコミットオブジェクトに巻き戻す。今回の巻き戻しでは、`--hard`オプションを追加する。  
-```bash
-$ git reset HEAD~2 --hard
-$ git log --oneline --graph
+```console
+user:~/git-tutorial-free-test$ git reset HEAD~2 --hard
+user:~/git-tutorial-free-test$ git log --oneline --graph
 * 7517781 (HEAD -> HOGE2) [Update] add do not include 'fuga' into .gitignore.
 ...
-$ git status
+user:~/git-tutorial-free-test$ git status
 ブランチ HOGE2
 nothing to commit, working tree clean
 ```
@@ -1213,8 +1213,8 @@ nothing to commit, working tree clean
 
  　この章ではブランチの強制削除に関して取り扱う。本来はブランチの作成や切り替えの章で説明すべきであるが、話の流れ上コチラに記載することが自然であると考えコチラに記載する。  
  　今のgit履歴は以下のようになっている。  
-```bash
-$ git log --oneline --graph --all
+```console
+user:~/git-tutorial-free-test$ git log --oneline --graph --all
 *   e2c3ec0 (temp) Merge branch 'FUGA2' into HOGE2
 |\  
 | * bf054d1 (FUGA2) [Add] 'bbbb' into test8.txt 2nd line
@@ -1236,22 +1236,22 @@ $ git log --oneline --graph --all
 * 44b500f first commit
 ```
  　ここで master 以外のブランチを全て削除する。削除の方法はブランチの作成と切り替えの章で記載した`git branch -d`コマンドを用いる。`git checkout`コマンドで master に移動してから削除を行う。  
-```bash
-$ git checkout master
+```console
+user:~/git-tutorial-free-test$ git checkout master
 Switched to branch 'master'
-$ git branch -d HOGE
+user:~/git-tutorial-free-test$ git branch -d HOGE
 Deleted branch HOGE (was bbbcdce).
-$ git branch -d FUGA
+user:~/git-tutorial-free-test$ git branch -d FUGA
 Deleted branch FUGA (was e756f92).
-$ git branch -d HOGE2
+user:~/git-tutorial-free-test$ git branch -d HOGE2
 Deleted branch HOGE2 (was 7517781).
-$ git branch -d FUGA2
+user:~/git-tutorial-free-test$ git branch -d FUGA2
 error: The branch 'FUGA2' is not fully merged.
 If you are sure you want to delete it, run 'git branch -D FUGA2'.
 ```
  　順調に削除が行われていたが FUGA2 のブランチを削除しようとするとエラーが発生する。ここでもう一度、git 履歴を確認する。  
-```bash
-$ git log --oneline --graph --all
+```console
+user:~/git-tutorial-free-test$ git log --oneline --graph --all
 *   e2c3ec0 (temp) Merge branch 'FUGA2' into HOGE2
 |\  
 | * bf054d1 (FUGA2) [Add] 'bbbb' into test8.txt 2nd line
@@ -1268,13 +1268,13 @@ $ git log --oneline --graph --all
 ```
  　FUGA2 ブランチは現在のブランチである master ブランチから見て過去に存在しない。マージするか削除する必要があるが、削除したい場合は強制的に削除する必要がある。  
  　ブランチの強制削除は以下のようにオプション`-d`を大文字にするだけである。  
-```bash
-$ git branch -D FUGA2
+```console
+user:~/git-tutorial-free-test$ git branch -D FUGA2
 Deleted branch FUGA2 (was bf054d1).
-$ git branch -D temp
+user:~/git-tutorial-free-test$ git branch -D temp
 Deleted branch temp (was e2c3ec0).
 
-$ git branch
+user:~/git-tutorial-free-test$ git branch
 * master
 ```
  　これでブランチが master だけになった。
@@ -1295,11 +1295,11 @@ $ git branch
  - ファイルの変更点の保存忘れ
 
  　このような場合は以下のように`--amend`オプションを用いることで対応することができる  
-```bash
+```console
 # コメントの修正
-$ git commit --amend -m "New Comment"
+user:~/git-tutorial-free-test$ git commit --amend -m "New Comment"
 
 # ファイルの追加忘れや変更の保存忘れ
 # --no-editオプションを更に付けることでコメントは修正しないことができる
-$ git commit --amend --no-edit
+user:~/git-tutorial-free-test$ git commit --amend --no-edit
 ```
